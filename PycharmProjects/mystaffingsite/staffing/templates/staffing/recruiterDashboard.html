@@ -1,0 +1,41 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class = "jumbotron">
+    <h3>Welcome {{ recruiter.first_name }}!</h3>
+    <hr>
+    <p><a href="{% url 'staffing:searchJobPosting' recruiter.id %}" class="btn btn-info">Search Job Postings by skill</a></p>
+    <p><a href="{% url 'staffing:searchApplicant' recruiter.id %}" class="btn btn-primary">Search Applicants by skill</a></p>
+    <br>
+    <h3>Job Postings</h3>
+
+    <table>
+        <tr>
+            <th>Client</th>
+            <th>Job Title</th>
+        </tr>
+        {% for job_posting in job_postings %}
+        <tr>
+            <td>{{ job_posting.client }}</td>
+            <td>{{ job_posting.title }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h3>Applicants</h3>
+
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        {% for applicant in applicants %}
+        <tr>
+            <td>{{ applicant.first_name }}</td>
+            <td>{{ applicant.last_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

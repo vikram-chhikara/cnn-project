@@ -1,0 +1,38 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class="jumbotron">
+    <p><h3>Welcome {{ applicant.first_name }}!</h3></p>
+    <hr>
+    <h4>Application Submission</h4>
+    <form action="{% url 'staffing:applicantDashboard' applicant.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ file_form }}
+
+        <button type="submit" name="submit" value = "submit_file">Submit File</button>
+    </form>
+
+    <hr width="50%">
+    <p>No pdf file? Submit the form below</p>
+    <form action="{% url 'staffing:applicantDashboard' applicant.id %}" method="POST">
+        {% csrf_token %}
+
+        <label for = "first_name">First Name</label>
+        <input type="text" id = "first_name" name = "first_name" value=""> <br>
+
+        <label for = "last_name">Last Name</label>
+        <input type="text" id = "last_name" name = "last_name" value=""> <br>
+
+        <label for = "email">Email</label>
+        <input type="text" id = "email" name = "email" value=""> <br>
+
+        <p>Skills</p>
+        {% for skill in skills%}
+            <label for = "skills">{{ skill }}</label>
+            <input type="checkbox" id = "skills" name = "skills" value="{{ skill }}"> <br>
+        {% endfor %}
+        <br>
+        <button type="submit" name="submit" value = "submit_form" class = "btn btn-primary">Submit Form</button>
+    </form>
+</div>
+{% endblock %}

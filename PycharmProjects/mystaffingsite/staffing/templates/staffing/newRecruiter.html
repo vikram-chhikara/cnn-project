@@ -1,0 +1,15 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class="jumbotron">
+    <p class = "lead">Fill in the information to add a new recruiter.</p>
+    <hr>
+    <form action="{% url 'staffing:newRecruiter' manager.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+        {{ form }}
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary">Add Recruiter</button>
+    </form>
+</div>
+{% endblock %}

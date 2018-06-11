@@ -1,0 +1,30 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class="jumbotron">
+    <p><h3>Welcome {{ manager.first_name }}!</h3></p>
+    <hr>
+    <p><a href="{% url 'staffing:newRecruiter' manager.id %}" class="btn btn-success">Add a recruiter</a></p>
+
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+
+        </tr>
+        {% for recruiter in recruiters %}
+        <tr>
+            <td>{{ recruiter.first_name }}</td>
+            <td>{{ recruiter.last_name }}</td>
+            <td>{{ recruiter.email }}</td>
+            <td>{{ recruiter.phone_number }}</td>
+            <td><a href="{% url 'staffing:editRecruiter' manager.id recruiter.id %}" class="btn btn-warning">Edit</a></td>
+            <td><a href="{% url 'staffing:removeRecruiter' recruiter.id %}" class="btn btn-danger">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

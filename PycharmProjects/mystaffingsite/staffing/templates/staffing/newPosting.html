@@ -1,0 +1,12 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class = "jumbotron">
+    <h3>Add Job Title and Skills</h3>
+    <form action="{% url 'staffing:newPosting' client.id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" name="submit" class = "btn btn-primary">Submit Posting</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class = "jumbotron">
+    <form action="{% url 'staffing:searchJobPosting' recruiter.id%}" method = "POST">
+        {% csrf_token %}
+
+        <label class ="lead" for = "jobPosting_search">Input skills separated by "and" and "or"</label><br>
+        <hr>
+        <textarea id = "jobPosting_search" name="jobPosting_search"  class="form-control" rows="5" cols="50"></textarea><br>
+        <button type="submit" name="submit" class = "btn btn-primary">Search</button>
+
+
+        {% if res %}
+            <hr>
+            <br>
+            <p><h4>Search Results</h4></p>
+            <table>
+                <tr>
+                    <th>Client</th>
+                    <th>Job Posting Title</th>
+                    <th>Skills</th>
+                </tr>
+            {% for job_posting in res %}
+                <tr>
+                    <td>{{ job_posting.client.company_name }}</td>
+                    <td>{{ job_posting.title }}</td>
+                    <td>{{ job_posting.skills }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}}

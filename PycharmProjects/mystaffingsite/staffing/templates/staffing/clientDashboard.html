@@ -1,0 +1,20 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class = "jumbotron">
+    <p><h3>Welcome {{ client.username }}!</h3></p>
+    <hr>
+    <p><a href="{% url 'staffing:newPosting' client.id %}" >Add a Job Posting</a></p>
+    <h3>My Job Postings</h3>
+    <ol>
+        {% for job_posting in job_postings %}
+        <li>{{ job_posting.title }} -
+        {% for skill in job_posting.skills %}
+            {{ skill }}{% if not forloop.last %} ,{% else %}.{% endif %}
+        {% endfor %}
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}
+

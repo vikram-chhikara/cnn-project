@@ -1,0 +1,19 @@
+{% extends "staffing/base_signup_login.html"%}
+
+{% block action_login%}
+    action="{% url 'staffing:applicantSignupOrLogin' %}"
+{% endblock %}
+
+{% block action_signup %}
+    action="{% url 'staffing:applicantSignupOrLogin' %}"
+{% endblock %}
+
+{% block login_form %}
+    {{ login_form }}
+{% endblock %}
+
+{% block signup_form %}
+    {{ signup_form }}
+{% endblock %}
+
+{% block footer %}{% endblock %}

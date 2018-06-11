@@ -1,0 +1,25 @@
+{% extends "staffing/base.html"%}
+
+{% block body %}
+<div class = "jumbotron">
+    <h1 class="display-3">Welcome to The Staffing Website!</h1>
+    <p class = "lead"> The Staffing Website connects recruiters and job seekers. Finding a job or talent has never been easier! </p>
+    <hr class = "my-4">
+    <p>Please select whether you are a recruiter or a job seeker below. </p>
+    <div class = "row">
+        <div class = "col-sm">
+            <p class="lead"><a href="{%url 'staffing:clientSignupOrLogin' %}" class="btn btn-success">Posting a job</a></p>
+        </div>
+        <div class = "col-sm">
+        <p class="lead"><a href="{%url 'staffing:applicantSignupOrLogin' %}" class="btn btn-primary">Applying for a job</a></p>
+        </div>
+        <div class = "col-sm">
+        <p class="lead"><a href="{% url 'staffing:managerLogin' %}" class="btn btn-danger">Manager login</a></p>
+        </div>
+        <div class = "col-sm">
+        <p class="lead"><a href="{% url 'staffing:recruiterLogin' %}" class="btn btn-warning">Recruiter login</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}
